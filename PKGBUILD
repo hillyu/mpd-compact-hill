@@ -13,8 +13,9 @@ pkgdesc='Flexible, powerful, server-side application for playing music. Light ve
 url='https://www.musicpd.org/'
 license=('GPL')
 arch=('i686' 'x86_64' 'armv6h' 'armv7h')
-depends=('audiofile' 'libmad' 'curl' 'faad2' 'sqlite' 'libmms' 'libid3tag' 'libmpdclient'
-         'icu' 'libupnp' 'libvorbis' 'libnfs' 'libsamplerate' 'libsoxr' 'libgme')
+#depends=('audiofile' 'libmad' 'curl' 'faad2' 'sqlite' 'libmms' 'libid3tag' 'libmpdclient'
+         #'icu' 'libupnp' 'libvorbis' 'libnfs' 'libsamplerate' 'libsoxr' 'libgme')
+depends=('libmad' 'curl' 'faad2' 'libid3tag')
 makedepends=('boost' 'meson' 'python-sphinx')
 provides=("mpd=$pkgver")
 conflicts=('mpd')
@@ -38,38 +39,108 @@ prepare() {
 build() {
 	cd "${srcdir}/mpd-${pkgver}/build"
 	_opts=('-Ddocumentation=true'
-	       '-Dchromaprint=disabled' # appears not to be used for anything
-	       '-Dsidplay=disabled' # unclear why but disabled in the past
-	       '-Dadplug=disabled' # not in an official repo
-	       '-Dsndio=disabled' # interferes with detection of alsa devices
-	       '-Dshine=disabled' # not in an official repo
-	       '-Dtremor=disabled' # not in an official repo
-	       '-Dao=disabled'
-	       '-Dffmpeg=disabled'
-	       '-Djack=disabled'
-	       '-Dmodplug=disabled'
-	       '-Dpulse=disabled'
-	       '-Dshout=disabled'
-	       '-Dsidplay=disabled'
-	       '-Dsoundcloud=disabled'
-	       '-Dwavpack=disabled'
-	       '-Dzzip=disabled'
-	       '-Dzeroconf=disabled'
+
+	       # networking
+	       '-Dtcp=false'
+	       '-Dlocal_socket=true'
+	       '-Dipv6=disabled'
+
+	       # audio formats
+	       '-Ddsd=false'
+
+	       # database
+	       '-Dupnp=disabled'
+	       '-Ddatabase=false'
+	       '-Dlibmpdclient=disabled'
+
+	       # neighbor
+	       '-Dneighbor=false'
+
+	       # storage
+	       '-Dudisks=disabled'
+	       '-Dwebdav=disabled'
+
+	       # playlist
+	       '-Dcue=false'
+
+	       # input
 	       '-Dsmbclient=disabled'
+	       '-Dnfs=disabled'
 	       '-Dcdio_paranoia=disabled'
+	       '-Dcurl=enabled'
+	       '-Dmms=disabled'
+
+	       # cloud
 	       '-Dqobuz=disabled'
 	       '-Dtidal=disabled'
+	       '-Dsoundcloud=disabled'
+
+	       # archive
+	       '-Dzzip=disabled'
+	       '-Dbzip2=disabled'
 	       '-Diso9660=disabled'
+
+	       # tags
+	       '-Dchromaprint=disabled' # appears not to be used for anything
+	       '-Did3tag=disabled'
+
+	       # decoders
+	       '-Dadplug=disabled' # not in an official repo
+	       '-Dmodplug=disabled'
+	       '-Dsidplay=disabled' # unclear why but disabled in the past
+	       '-Dwavpack=disabled'
+	       '-Dffmpeg=disabled'
+	       '-Daudiofile=disabled'
+	       '-Dfaad=enabled'
+	       '-Dflac=enabled'
 	       '-Dfluidsynth=disabled'
+	       '-Dgme=disabled'
+	       '-Dmad=enabled'
 	       '-Dmikmod=disabled'
 	       '-Dmpcdec=disabled'
 	       '-Dmpg123=disabled'
 	       '-Dopus=disabled'
+	       '-Dsndfile=disabled'
+	       '-Dtremor=disabled'
+	       '-Dvorbis=disabled'
 	       '-Dwildmidi=disabled'
+
+	       # encoders
+	       '-Dwave_encoder=false'
+	       '-Dvorbisenc=disabled'
 	       '-Dlame=disabled'
 	       '-Dtwolame=disabled'
+	       '-Dshine=disabled' # not in an official repo
+
+	       # filters
+	       '-Dlibsamplerate=disabled'
+	       '-Dsoxr=disabled'
+
+	       # output
+	       '-Dfifo=true'
+	       '-Dhttpd=false'
+	       '-Drecorder=false'
+	       '-Doss=disabled'
+	       '-Dalsa=disabled'
 	       '-Dopenal=disabled'
+	       '-Dpulse=enabled'
+	       '-Dshout=disabled'
+	       '-Dao=disabled'
+	       '-Djack=disabled'
+	       '-Dpipe=false'
+	       '-Dsndio=disabled' # interferes with detection of alsa devices
+
+	       # misc
 	       '-Dyajl=disabled'
+	       '-Ddbus=disabled'
+	       '-Dsqlite=disabled'
+	       '-Dexpat=disabled'
+	       '-Dicu=disabled'
+	       '-Diconv=disabled'
+	       '-Dpcre=disabled'
+	       '-Dzlib=disabled'
+
+	       '-Dzeroconf=disabled'
 	)
 	arch-meson --auto-features auto .. ${_opts[@]}
 	ninja
