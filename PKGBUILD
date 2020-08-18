@@ -50,7 +50,7 @@ build() {
 
 	       # database
 	       '-Dupnp=disabled'
-	       '-Ddatabase=false'
+	       '-Ddatabase=true'
 	       '-Dlibmpdclient=disabled'
 
 	       # neighbor
