@@ -7,7 +7,7 @@
 # Contributor: Ben <ben@benmazer.net>
 
 pkgname=mpd-light
-pkgver=0.22
+pkgver=0.22.2
 _majorver=0.22
 pkgrel=1
 pkgdesc='Flexible, powerful, server-side application for playing music. Light version without ao, ffmpeg, jack, modplug, pulse, shout, sidplay, soundcloud, wavpack, avahi, smbclient and zziplib support.'
@@ -24,7 +24,7 @@ replaces=('mpd')
 source=("https://www.musicpd.org/download/mpd/${_majorver}/mpd-${pkgver}.tar.xz"
         'mpd.tmpfile'
         'mpd.conf')
-sha512sums=('2a6671dc2392dbac65d8339b8cfe86626fc46727bedab80266b24c6d63b0a26a832fc233576866ab5115627efdaa61bbe6876f4d33cb48c21e16fb5b74d3cfe4'
+sha512sums=('13ec85bda79d0c2588c50e2ebbf53b733f23c9700abfd7ccd4140db8080a4c496073727c8c04e9a2f8897669beeced0d77caa2bac7e2ca9adb41ad56dcf92aeb'
             '3608f8b0418aa5527917c35308aeca80357c3cf1834cceeade2eaab7fa736117c0b3143cf225478441ffc533b45ff1e8c5579a2e1aa432a4db5ca4cef2dd04e1'
             'f3eaa25925887ae5df52da0119a77729b5761c175a22117ab15a1636b141f4b159db75dc4e9a52e0d16b2bc4b0f617a4e0838a8d3624f98706beb3387971c660')
 backup=('etc/mpd.conf')
