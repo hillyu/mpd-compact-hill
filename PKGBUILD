@@ -17,7 +17,7 @@ license=('GPL2')
 arch=('i686' 'x86_64' 'armv6h' 'armv7h')
 #depends=('audiofile' 'libmad' 'curl' 'faad2' 'sqlite' 'libmms' 'libid3tag' 'libmpdclient'
          #'icu' 'libupnp' 'libvorbis' 'libnfs' 'libsamplerate' 'libsoxr' 'libgme')
-depends=('libmad' 'curl' 'faad2' 'expat')
+depends=('ffmpeg' 'curl'  'expat')
 makedepends=('boost' 'meson' 'python-sphinx')
 provides=("mpd=$pkgver")
 conflicts=('mpd')
@@ -74,7 +74,7 @@ build() {
 	       # cloud
 	       '-Dqobuz=disabled'
 	       '-Dtidal=disabled'
-	       '-Dsoundcloud=enabled'
+	       '-Dsoundcloud=disabled'
 
 	       # archive
 	       '-Dzzip=disabled'
@@ -90,13 +90,13 @@ build() {
 	       '-Dmodplug=disabled'
 	       '-Dsidplay=disabled' # unclear why but disabled in the past
 	       '-Dwavpack=disabled'
-	       '-Dffmpeg=disabled'
+	       '-Dffmpeg=enabled'
 	       '-Daudiofile=disabled'
-	       '-Dfaad=enabled'
-	       '-Dflac=enabled'
+	       '-Dfaad=disabled'
+	       '-Dflac=disabled'
 	       '-Dfluidsynth=disabled'
 	       '-Dgme=disabled'
-	       '-Dmad=enabled'
+	       '-Dmad=disabled'
 	       '-Dmikmod=disabled'
 	       '-Dmpcdec=disabled'
 	       '-Dmpg123=disabled'
@@ -132,7 +132,7 @@ build() {
 	       '-Dsndio=disabled' # interferes with detection of alsa devices
 
 	       # misc
-	       '-Dyajl=enabled'
+	       '-Dyajl=disabled'
 	       '-Ddbus=disabled'
 	       '-Dsqlite=disabled'
 	       '-Dexpat=enabled'
