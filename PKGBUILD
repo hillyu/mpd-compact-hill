@@ -7,11 +7,11 @@
 # Contributor: Ben <ben@benmazer.net>
 # Contributor: Levente Polyak <anthraxx[at]archlinux[dot]org>
 
-pkgname=mpd-light
+pkgname=mpd-compact-hill
 pkgver=0.23.5
 _majorver=0.23
 pkgrel=1
-pkgdesc='Flexible, powerful, server-side application for playing music. Light version without ao, ffmpeg, jack, modplug, pulse, shout, sidplay, soundcloud, wavpack, avahi, smbclient and zziplib support.'
+pkgdesc='Flexible, powerful, server-side application for playing music. Light version without ao, ffmpeg, jack, modplug, shout, sidplay, soundcloud, wavpack, avahi, smbclient and zziplib support.'
 url='https://www.musicpd.org/'
 license=('GPL2')
 arch=('i686' 'x86_64' 'armv6h' 'armv7h')
@@ -124,7 +124,7 @@ build() {
 	       '-Doss=disabled'
 	       '-Dalsa=disabled'
 	       '-Dopenal=disabled'
-	       '-Dpulse=enabled'
+	       '-Dpulse=disabled'
 	       '-Dshout=disabled'
 	       '-Dao=disabled'
 	       '-Djack=disabled'
