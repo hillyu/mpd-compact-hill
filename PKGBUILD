@@ -8,7 +8,7 @@
 # Contributor: Levente Polyak <anthraxx[at]archlinux[dot]org>
 
 pkgname=mpd-compact-hill
-pkgver=0.23.5
+pkgver=0.23.8
 _majorver=0.23
 pkgrel=1
 pkgdesc='Flexible, powerful, server-side application for playing music. Light version without ao, ffmpeg, jack, modplug, shout, sidplay, soundcloud, wavpack, avahi, smbclient and zziplib support.'
@@ -17,8 +17,10 @@ license=('GPL2')
 arch=('i686' 'x86_64' 'armv6h' 'armv7h')
 #depends=('audiofile' 'libmad' 'curl' 'faad2' 'sqlite' 'libmms' 'libid3tag' 'libmpdclient'
          #'icu' 'libupnp' 'libvorbis' 'libnfs' 'libsamplerate' 'libsoxr' 'libgme')
-depends=('ffmpeg' 'curl'  'expat')
-makedepends=('boost' 'meson' 'python-sphinx')
+# mp4 is only supported by ffmpeg
+depends=('ffmpeg' 'expat')
+# makedepends=('boost' 'meson' 'python-sphinx')
+makedepends=('boost' 'meson')
 provides=("mpd=$pkgver")
 conflicts=('mpd')
 replaces=('mpd')
@@ -39,7 +41,7 @@ prepare() {
 
 build() {
 	cd "mpd-${pkgver}"
-	_opts=('-Ddocumentation=enabled'
+	_opts=('-Ddocumentation=disabled'
 
 	       # networking
 	       '-Dtcp=false'
@@ -68,7 +70,7 @@ build() {
 	       '-Dsmbclient=disabled'
 	       '-Dnfs=disabled'
 	       '-Dcdio_paranoia=disabled'
-	       '-Dcurl=enabled'
+	       '-Dcurl=disabled'
 	       '-Dmms=disabled'
 
 	       # cloud
@@ -105,6 +107,7 @@ build() {
 	       '-Dtremor=disabled'
 	       '-Dvorbis=disabled'
 	       '-Dwildmidi=disabled'
+           '-Dopenmpt=disabled'
 
 	       # encoders
 	       '-Dwave_encoder=false'
@@ -124,7 +127,7 @@ build() {
 	       '-Doss=disabled'
 	       '-Dalsa=disabled'
 	       '-Dopenal=disabled'
-	       '-Dpulse=disabled'
+	       '-Dpulse=enabled'
 	       '-Dshout=disabled'
 	       '-Dao=disabled'
 	       '-Djack=disabled'
