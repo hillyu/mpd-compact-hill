@@ -8,7 +8,7 @@
 # Contributor: Levente Polyak <anthraxx[at]archlinux[dot]org>
 
 pkgname=mpd-compact-hill
-pkgver=0.23.8
+pkgver=0.23.9
 _majorver=0.23
 pkgrel=1
 pkgdesc='Flexible, powerful, server-side application for playing music. Light version without ao, ffmpeg, jack, modplug, shout, sidplay, soundcloud, wavpack, avahi, smbclient and zziplib support.'
@@ -125,7 +125,7 @@ build() {
 	       '-Dhttpd=false'
 	       '-Drecorder=false'
 	       '-Doss=disabled'
-	       '-Dalsa=disabled'
+	       '-Dalsa=enabled'
 	       '-Dopenal=disabled'
 	       '-Dpulse=enabled'
 	       '-Dshout=disabled'
